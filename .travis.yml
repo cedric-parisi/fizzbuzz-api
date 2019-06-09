@@ -1,0 +1,18 @@
+sudo: false
+
+language: go
+
+go:
+  - 1.12.x
+  - tip
+
+env:
+  - GO111MODULE=on
+
+before_install:
+  - go get github.com/mattn/goveralls
+
+install: true
+
+script:
+  - go test -coverprofile=cover.out -v ./...

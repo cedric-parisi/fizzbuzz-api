@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/cedric-parisi/fizzbuzz-api/config"
-	"github.com/cedric-parisi/fizzbuzz-api/storage"
-
 	_ "github.com/lib/pq"
 	"github.com/pressly/goose"
+
+	"github.com/cedric-parisi/fizzbuzz-api/config"
+	"github.com/cedric-parisi/fizzbuzz-api/storage"
 )
 
 const (

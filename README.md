@@ -1,10 +1,15 @@
 # fizzbuzz-api
+[![Coverage Status](https://coveralls.io/repos/github/cedric-parisi/fizzbuzz-api/badge.svg?branch=master)](https://coveralls.io/github/cedric-parisi/fizzbuzz-api?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/cedric-parisi/fizzbuzz-api)](https://goreportcard.com/report/github.com/cedric-parisi/fizzbuzz-api)[![Build Status](https://travis-ci.com/cedric-parisi/fizzbuzz-api.svg?branch=master)](https://travis-ci.com/cedric-parisi/fizzbuzz-api)
+
 
 Provides a REST API to get fizzbuzz sentences.
 
 ## Getting started
 
 Before you start, make sure `golang` and `docker-compose` are installed.
+
+This API was written with `go 1.12` and `GO111MODULE=on`.
 
 ### installation
 

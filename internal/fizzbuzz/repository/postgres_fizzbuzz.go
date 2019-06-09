@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	insertFizzbuzzQuery          = `INSERT INTO stats(int1, int2, max_limit, str1, str2, occured_at) VALUES ($1, $2, $3, $4, $5, now());`
+	insertFizzbuzzQuery          = `INSERT INTO stats(int1, int2, max_limit, str1, str2, occurred_at) VALUES ($1, $2, $3, $4, $5, now());`
 	selectMostAskedFizzbuzzQuery = `
 	SELECT COUNT(*) AS hits, int1, int2, max_limit, str1, str2 
 	FROM stats

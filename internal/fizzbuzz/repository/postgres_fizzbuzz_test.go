@@ -10,11 +10,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/jmoiron/sqlx"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/DATA-DOG/go-sqlmock.v2"
 
 	"github.com/cedric-parisi/fizzbuzz-api/models"
-	"github.com/jmoiron/sqlx"
 )
 
 func Test_pqRepository_SaveFizzbuzz(t *testing.T) {

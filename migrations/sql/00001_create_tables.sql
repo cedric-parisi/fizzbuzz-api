@@ -10,7 +10,7 @@ CREATE TABLE stats (
     str1 varchar NOT NULL,
     str2 varchar NOT NULL,
 
-    occured_at timestamp without time zone NOT NULL
+    occurred_at timestamp without time zone NOT NULL
 );
 
 CREATE INDEX stats_all_idx ON stats(int1, int2, max_limit, str1, str2);
