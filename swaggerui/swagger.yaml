@@ -1,0 +1,180 @@
+swagger: '2.0'
+info:
+  description: This is a simple fizzbuzz REST API.
+  version: 1.0.0
+  title: Fizzbuzz API
+  contact:
+    email: cedric.parisi@gmail.com
+host: 'localhost:8000'
+basePath: /v1
+tags:
+  - name: fizzbuzz
+schemes:
+  - http
+paths:
+  /fizzbuzz/:
+    get:
+      tags:
+        - fizzbuzz
+      summary: returns a fizzbuzz sentence
+      description: 'Returns a list of strings with numbers from 1 to limit, where: all multiples of int1 are replaced by str1, all multiples of int2 are replaced by str2, all multiples of int1 and int2 are replaced by str1str2'
+      operationId: getFizzbuzz
+      produces:
+        - application/json
+      parameters:
+        - name: int1
+          in: query
+          description: multiple of int1 will be replaced by str1.
+          required: true
+          type: integer
+        - name: int2
+          in: query
+          description: multiple of int2 will be replaced by str2.
+          required: true
+          type: integer
+        - name: limit
+          in: query
+          description: limit.
+          required: true
+          type: integer
+        - name: str1
+          in: query
+          description: string to replace number that are multiple of int1.
+          required: true
+          type: string
+        - name: str2
+          in: query
+          description: string to replace number that are multiple of int2.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'return fizzbuzz sentence with int1 replaced by str1, int2 replaced by str2, int1*int2 replaced by str1str2, until limit.'
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  type: string
+                  example: ["1", "2", "fizz", "4", "buzz"]
+        '400':
+          description: bad input parameters
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "invalid fizzbuzz request"
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: name of the invalid query parameter
+                          example: "int1"
+                        message:
+                          type: string
+                          description: validation error message
+                          example: "int1 must be greater than 0"
+                          
+        '500':
+          description: an internal server error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "unexpected server error"
+  /fizzbuzz/stats/:
+    get:
+      tags:
+        - fizzbuzz
+      summary: returns the most requested fizzbuzz
+      description: 'Return the parameters corresponding to the most used request, as well as the number of hits for this request'
+      operationId: getFizzbuzzStats
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: return a fizzbuzz query and number of hits.
+          schema:
+            type: object
+            properties:
+              hits:
+                type: integer
+                example: 4
+              request:
+                $ref: '#/definitions/fizzbuzz'
+        '404':
+          description: no stats found
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "most asked fizzbuzz: not found"
+        '500':
+          description: an internal server error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "unexpected server error"
+definitions:
+  error:
+    type: object
+    properties:
+      message: 
+        type: string
+        description: error message
+      fields:
+        type: array
+        description: list of validation error
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              description: field name that trigger the error
+            message:
+              type: string
+              description: buziness validation requirement
+  fizzbuzz:
+    type: object
+    properties:
+      int1:
+        type: integer
+        description: multiple of int1 will be replaced by str1.
+        example: 3
+      int2:
+        type: integer
+        description: multiple of int2 will be replaced by str2.
+        example: 5
+      limit:
+        type: integer
+        description: limit.
+        example: 15
+      str1:
+        type: string
+        description: string to replace number that are multiple of int1.
+        example: 'fizz'
+      str2:
+        type: string
+        description: string to replace number that are multiple of int2.
+        example: 'buzz'

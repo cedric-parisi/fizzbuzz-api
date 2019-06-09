@@ -1,0 +1,103 @@
+# github.com/beorn7/perks v1.0.0
+github.com/beorn7/perks/quantile
+# github.com/caarlos0/env v3.5.0+incompatible
+github.com/caarlos0/env
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
+# github.com/dgrijalva/jwt-go v3.2.0+incompatible
+github.com/dgrijalva/jwt-go
+# github.com/golang/mock v1.3.1
+github.com/golang/mock/gomock
+# github.com/golang/protobuf v1.3.1
+github.com/golang/protobuf/proto
+# github.com/jmoiron/sqlx v1.2.0
+github.com/jmoiron/sqlx
+github.com/jmoiron/sqlx/reflectx
+# github.com/joho/godotenv v1.3.0
+github.com/joho/godotenv
+# github.com/konsorten/go-windows-terminal-sequences v1.0.1
+github.com/konsorten/go-windows-terminal-sequences
+# github.com/labstack/echo/v4 v4.1.5
+github.com/labstack/echo/v4
+github.com/labstack/echo/v4/middleware
+# github.com/labstack/gommon v0.2.8
+github.com/labstack/gommon/color
+github.com/labstack/gommon/log
+github.com/labstack/gommon/bytes
+github.com/labstack/gommon/random
+# github.com/lib/pq v1.0.0
+github.com/lib/pq
+github.com/lib/pq/oid
+# github.com/mattn/go-colorable v0.1.1
+github.com/mattn/go-colorable
+# github.com/mattn/go-isatty v0.0.7
+github.com/mattn/go-isatty
+# github.com/matttproud/golang_protobuf_extensions v1.0.1
+github.com/matttproud/golang_protobuf_extensions/pbutil
+# github.com/opentracing/opentracing-go v1.1.0
+github.com/opentracing/opentracing-go
+github.com/opentracing/opentracing-go/log
+github.com/opentracing/opentracing-go/ext
+# github.com/pkg/errors v0.8.1
+github.com/pkg/errors
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/pressly/goose v2.6.0+incompatible
+github.com/pressly/goose
+# github.com/prometheus/client_golang v0.9.4
+github.com/prometheus/client_golang/prometheus/promhttp
+github.com/prometheus/client_golang/prometheus
+github.com/prometheus/client_golang/prometheus/internal
+# github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
+github.com/prometheus/client_model/go
+# github.com/prometheus/common v0.4.1
+github.com/prometheus/common/expfmt
+github.com/prometheus/common/model
+github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg
+# github.com/prometheus/procfs v0.0.2
+github.com/prometheus/procfs
+github.com/prometheus/procfs/internal/fs
+# github.com/sirupsen/logrus v1.2.0
+github.com/sirupsen/logrus
+# github.com/stretchr/testify v1.3.0
+github.com/stretchr/testify/assert
+# github.com/uber/jaeger-client-go v2.16.0+incompatible
+github.com/uber/jaeger-client-go/config
+github.com/uber/jaeger-client-go
+github.com/uber/jaeger-client-go/internal/baggage/remote
+github.com/uber/jaeger-client-go/internal/throttler/remote
+github.com/uber/jaeger-client-go/rpcmetrics
+github.com/uber/jaeger-client-go/transport
+github.com/uber/jaeger-client-go/internal/baggage
+github.com/uber/jaeger-client-go/internal/spanlog
+github.com/uber/jaeger-client-go/internal/throttler
+github.com/uber/jaeger-client-go/log
+github.com/uber/jaeger-client-go/thrift
+github.com/uber/jaeger-client-go/thrift-gen/jaeger
+github.com/uber/jaeger-client-go/thrift-gen/sampling
+github.com/uber/jaeger-client-go/thrift-gen/zipkincore
+github.com/uber/jaeger-client-go/utils
+github.com/uber/jaeger-client-go/thrift-gen/baggage
+github.com/uber/jaeger-client-go/thrift-gen/agent
+# github.com/uber/jaeger-lib v2.0.0+incompatible
+github.com/uber/jaeger-lib/metrics
+# github.com/valyala/bytebufferpool v1.0.0
+github.com/valyala/bytebufferpool
+# github.com/valyala/fasttemplate v1.0.1
+github.com/valyala/fasttemplate
+# golang.org/x/crypto v0.0.0-20190510104115-cbcb75029529
+golang.org/x/crypto/acme
+golang.org/x/crypto/acme/autocert
+golang.org/x/crypto/ssh/terminal
+# golang.org/x/net v0.0.0-20190522155817-f3200d17e092
+golang.org/x/net/idna
+# golang.org/x/sys v0.0.0-20190509141414-a5b02f93d862
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+# golang.org/x/text v0.3.2
+golang.org/x/text/secure/bidirule
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+golang.org/x/text/transform
+# gopkg.in/DATA-DOG/go-sqlmock.v2 v2.0.0-20180914054222-c19298f520d0
+gopkg.in/DATA-DOG/go-sqlmock.v2
