@@ -94,7 +94,7 @@ func Test_pqRepository_SaveFizzbuzz(t *testing.T) {
 }
 
 func Test_pqRepository_GetMostAskedFizzbuzz(t *testing.T) {
-	rows := sqlmock.NewRows([]string{"max_asked", "checksum_query"})
+	rows := sqlmock.NewRows([]string{"hits", "int1", "int2", "max_limit", "str1", "str2"})
 	type args struct {
 		ctx context.Context
 	}
@@ -115,13 +115,13 @@ func Test_pqRepository_GetMostAskedFizzbuzz(t *testing.T) {
 				m.ExpectQuery("SELECT COUNT").
 					WillReturnRows(rows.AddRow(
 						42,
-						"7b22696e7431223a332c22696e7432223a352c226c696d6974223a352c2273747231223a2266697a7a222c2273747232223a2262757a7a227d0a",
+						3, 5, 15, "fizz", "buzz",
 					))
 			},
 			want: &models.Fizzbuzz{
 				Int1:  3,
 				Int2:  5,
-				Limit: 5,
+				Limit: 15,
 				Str1:  "fizz",
 				Str2:  "buzz",
 			},

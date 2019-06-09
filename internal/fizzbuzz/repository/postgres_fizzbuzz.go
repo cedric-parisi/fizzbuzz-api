@@ -1,11 +1,8 @@
 package repository
 
 import (
-	"bytes"
 	"context"
 	"database/sql"
-	"encoding/hex"
-	"encoding/json"
 	"time"
 
 	"github.com/jmoiron/sqlx"
@@ -15,12 +12,12 @@ import (
 )
 
 const (
-	insertFizzbuzzQuery          = `INSERT INTO stats(checksum_query, occured_at) VALUES ($1, now());`
+	insertFizzbuzzQuery          = `INSERT INTO stats(int1, int2, max_limit, str1, str2, occured_at) VALUES ($1, $2, $3, $4, $5, now());`
 	selectMostAskedFizzbuzzQuery = `
-	SELECT COUNT(*) AS max_asked, checksum_query 
+	SELECT COUNT(*) AS hits, int1, int2, max_limit, str1, str2 
 	FROM stats
-	GROUP BY checksum_query
-	ORDER BY max_asked DESC
+	GROUP BY int1, int2, max_limit, str1, str2
+	ORDER BY hits DESC
 	LIMIT 1;`
 )
 
@@ -39,23 +36,12 @@ func NewPostgresFizzbuzzRepository(db *sqlx.DB, t int) fizzbuzz.Repository {
 
 // SaveFizzbuzz persists fizzbuzz request into storage.
 func (s *pqRepository) SaveFizzbuzz(ctx context.Context, fb *models.Fizzbuzz) error {
-	// Encode the fizzbuzz struct to hexadecimal string.
-	src := &bytes.Buffer{}
-	if err := json.NewEncoder(src).Encode(fb); err != nil {
-		return err
-	}
-	dst := make([]byte, hex.EncodedLen(len(src.Bytes())))
-
-	// We ignore the Encode result as
-	// this value is always EncodedLen(len(src))
-	hex.Encode(dst, src.Bytes())
-
 	// Close the db call if too long
 	ctx, cancel := context.WithTimeout(ctx, s.timeoutDuration)
 	defer cancel()
 
-	// Persists the hex encoded query to the DB.
-	if _, err := s.db.ExecContext(ctx, insertFizzbuzzQuery, string(dst)); err != nil {
+	// Persists the query param to the DB.
+	if _, err := s.db.ExecContext(ctx, insertFizzbuzzQuery, fb.Int1, fb.Int2, fb.Limit, fb.Str1, fb.Str2); err != nil {
 		return err
 	}
 
@@ -69,25 +55,21 @@ func (s *pqRepository) GetMostAskedFizzbuzz(ctx context.Context) (*models.Fizzbu
 	defer cancel()
 
 	// Retrieve the most asked fizzbuzz from the DB.
-	var checksum string
+	var int1, int2, limit int
+	var str1, str2 string
 	var count int
-	if err := s.db.QueryRowContext(ctx, selectMostAskedFizzbuzzQuery).Scan(&count, &checksum); err != nil {
+	if err := s.db.QueryRowContext(ctx, selectMostAskedFizzbuzzQuery).Scan(&count, &int1, &int2, &limit, &str1, &str2); err != nil {
 		if err == sql.ErrNoRows {
 			return nil, 0, models.ErrNotFound
 		}
 		return nil, 0, err
 	}
 
-	// Decode the hexadecimal string.
-	src := []byte(checksum)
-	dst := make([]byte, len(src))
-	hex.Decode(dst, src)
-
-	// Decode the byte array into fizzbuzz struct.
-	res := models.Fizzbuzz{}
-	if err := json.NewDecoder(bytes.NewReader(dst)).Decode(&res); err != nil {
-		return nil, 0, err
-	}
-
-	return &res, count, nil
+	return &models.Fizzbuzz{
+		Int1:  int1,
+		Int2:  int2,
+		Limit: limit,
+		Str1:  str1,
+		Str2:  str2,
+	}, count, nil
 }
