@@ -14,11 +14,6 @@ import (
 	"github.com/cedric-parisi/fizzbuzz-api/pkg/logging"
 )
 
-const (
-	contentType     = "Content-Type"
-	applicationJSON = "application/json"
-)
-
 type handler struct {
 	svc       fizzbuzz.Service
 	errLogger *logrus.Logger

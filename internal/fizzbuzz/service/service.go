@@ -23,12 +23,14 @@ func NewFizzbuzzService(repo fizzbuzz.Repository) fizzbuzz.Service {
 
 // GetFizzbuzz computes and returns a fizzbuzz
 func (s *svc) GetFizzbuzz(ctx context.Context, req *models.Fizzbuzz) ([]string, error) {
-	// Perform buziness validation.
+	// Perform business validation.
 	if err := req.Validate(); err != nil {
 		return nil, errors.InvalidArgument("invalid fizzbuzz request", err)
 	}
 
 	res := computeFizzbuzz(req)
+
+	// Save fizzbuzz request to storage for stats.
 	if err := s.repo.SaveFizzbuzz(ctx, req); err != nil {
 		return nil, errors.Internal(err)
 	}
