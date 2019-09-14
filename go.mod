@@ -1,6 +1,6 @@
 module github.com/cedric-parisi/fizzbuzz-api
 
-go 1.12
+go 1.13
 
 require (
 	github.com/caarlos0/env v3.5.0+incompatible

@@ -10,19 +10,20 @@ import (
 	"github.com/cedric-parisi/fizzbuzz-api/models"
 )
 
-type svc struct {
+// FizzbuzzService implements Service interface for fizzbuzz logic.
+type FizzbuzzService struct {
 	repo fizzbuzz.Repository
 }
 
 // NewFizzbuzzService creates a new service impl for fizzbuzz.
-func NewFizzbuzzService(repo fizzbuzz.Repository) fizzbuzz.Service {
-	return &svc{
+func NewFizzbuzzService(repo fizzbuzz.Repository) *FizzbuzzService {
+	return &FizzbuzzService{
 		repo: repo,
 	}
 }
 
 // GetFizzbuzz computes and returns a fizzbuzz
-func (s *svc) GetFizzbuzz(ctx context.Context, req *models.Fizzbuzz) ([]string, error) {
+func (s *FizzbuzzService) GetFizzbuzz(ctx context.Context, req *models.Fizzbuzz) ([]string, error) {
 	// Perform business validation.
 	if err := req.Validate(); err != nil {
 		return nil, errors.InvalidArgument("invalid fizzbuzz request", err)
@@ -39,7 +40,7 @@ func (s *svc) GetFizzbuzz(ctx context.Context, req *models.Fizzbuzz) ([]string, 
 }
 
 // GetMostAskedFizzbuzz returns the most asked fizzbuzz query.
-func (s *svc) GetMostAskedFizzbuzz(ctx context.Context) (*models.Fizzbuzz, int, error) {
+func (s *FizzbuzzService) GetMostAskedFizzbuzz(ctx context.Context) (*models.Fizzbuzz, int, error) {
 	fb, ct, err := s.repo.GetMostAskedFizzbuzz(ctx)
 	if err != nil {
 		if err == models.ErrNotFound {
